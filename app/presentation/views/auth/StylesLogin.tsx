@@ -53,9 +53,12 @@ const styles = StyleSheet.create({
         },
         formButton:{
             backgroundColor: "#242424",
-            color: "white",
-            textAlign: "center"
-        }
+            color: "#ffffff",
+            textAlign: "center",
+            paddingVertical: 10,
+            paddingHorizontal: 10,
+            borderRadius: 5
+        },
 });
 
 export default styles;

@@ -33,16 +33,15 @@ export const LoginScreen = () => {
                                secureTextEntry={true}
                     ></TextInput>
                 </View>
-                <View>
+                <View style={styles.formButton}>
                     <TouchableOpacity onPress={() =>{ToastAndroid.show("Presionando Toast", ToastAndroid.LONG)}}>
-                        <Text>Botón personalizado</Text>
+                        <Text style={{color: "white", textAlign: "center"}}>Iniciar</Text>
                     </TouchableOpacity>
                 </View>
 
-                <View style={{marginTop: 30,}}>
+                <View style={{marginTop:15}}>
                     <TouchableOpacity onPress={() =>{navigation.navigate("RegistroScreen")}}>
-                        <Text>Registrarme</Text>
-
+                        <Text style={{textDecorationLine:"underline"}}>Registrarme</Text>
                     </TouchableOpacity>
                 </View>
             </View>
