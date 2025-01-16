@@ -1,4 +1,5 @@
 import {StyleSheet} from "react-native";
+import {AppColors} from "../../theme/AppTheme";
 
 const styles = StyleSheet.create({
         container: {
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
         },
         imageContainer: {
             alignSelf: "center",
-            marginTop: 130,
+            marginTop: 100,
         },
         image:{
             width: 125,
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
             paddingVertical: 20,
             paddingHorizontal: 15,
             marginHorizontal: "auto",
-            marginTop: 80,
+            marginTop: 50,
             borderRadius: 10,
         },
         titleForm:{
@@ -37,28 +38,14 @@ const styles = StyleSheet.create({
             borderBottomWidth: 1,
             paddingBottom: 9,
             textAlign: "center",
-            color: "#242424",
-            borderBottomColor: "#242424"
+            color: AppColors.secondary,
+            borderBottomColor: AppColors.secondary,
         },
-        formInputContainer:{
-            marginBottom: 18,
-        },
-        formInput:{
-            borderWidth: 1,
-            borderColor: "#242424",
-            paddingVertical: 7,
-            paddingHorizontal: 8,
-            borderRadius: 5,
-            marginBottom: 20
-        },
-        formButton:{
-            backgroundColor: "#242424",
-            color: "#ffffff",
+        registroText:{
+            color:AppColors.primary,
             textAlign: "center",
-            paddingVertical: 10,
-            paddingHorizontal: 10,
-            borderRadius: 5
-        },
+            fontWeight: "bold",
+    }
 });
 
 export default styles;
