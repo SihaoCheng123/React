@@ -1,10 +1,13 @@
 import * as React from 'react';
-import {Image, Text, View} from "react-native";
+import {Image, Text, ToastAndroid, View} from "react-native";
 import styles from "./StylesLogin";
 import {RoundedBottom} from "../../components/RoundedBottom";
 import {FormInput} from "../../components/FormInput";
+import viewModel from "./ViewModel";
 
 function RegistroScreen() {
+    const {username, password, repeatPassword, name, phone, email, onChangeRegister, register} = viewModel.RegisterViewModel();
+
     return (
         <View style={styles.container}>
 
@@ -20,39 +23,48 @@ function RegistroScreen() {
                     <FormInput image={require("../../../../assets/my_user.png")}
                                placeholder={"Usuario"} keyboardType={"default"}
                                secureTextEntry={false}
-                               onPressFromInterface={}></FormInput>
+                               onPressFromInterface={(text) => onChangeRegister('username',text)}></FormInput>
                 </View>
 
                 <View>
                     <FormInput image={require("../../../../assets/confirm_password.png")}
                                placeholder={"Contraseña"} keyboardType={"default"}
                                secureTextEntry={true}
-                               onPressFromInterface={}></FormInput>
+                               onPressFromInterface={(text) => onChangeRegister('password',text)}></FormInput>
+                </View>
+
+                <View>
+                    <FormInput image={require("../../../../assets/confirm_password.png")}
+                               placeholder={"Confirme la contraseña"} keyboardType={"default"}
+                               secureTextEntry={true}
+                               onPressFromInterface={(text) => onChangeRegister('repeatPassword',text)}></FormInput>
                 </View>
 
                 <View>
                     <FormInput image={require("../../../../assets/user.png")}
                                placeholder={"Nombre"} keyboardType={"default"}
                                secureTextEntry={false}
-                               onPressFromInterface={}></FormInput>
+                               onPressFromInterface={(text) => onChangeRegister('name',text)}></FormInput>
                 </View>
 
                 <View>
                     <FormInput image={require("../../../../assets/phone.png")}
                                placeholder={"Teléfono"} keyboardType={"numeric"}
                                secureTextEntry={false}
-                               onPressFromInterface={}></FormInput>
+                               onPressFromInterface={(text) => onChangeRegister('phone',text)}></FormInput>
                 </View>
 
                 <View>
                     <FormInput image={require("../../../../assets/email.png")}
                                placeholder={"Correo"} keyboardType={"email-address"}
                                secureTextEntry={false}
-                               onPressFromInterface={}></FormInput>
+                               onPressFromInterface={(text) => onChangeRegister('email',text)}></FormInput>
                 </View>
 
                 <View>
-                    <RoundedBottom text={"Registrar"} onPressFromInterface={() => alert("Registro finalizado")}></RoundedBottom>
+                    <RoundedBottom text={"Registrar"}
+                                   onPressFromInterface={() =>{register()
+                                   ToastAndroid.show("Registrado", ToastAndroid.LONG)}}></RoundedBottom>
                 </View>
 
             </View>

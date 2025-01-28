@@ -36,4 +36,3 @@ yarn-error.*
 *.tsbuildinfo
 
 .idea
-node_modules

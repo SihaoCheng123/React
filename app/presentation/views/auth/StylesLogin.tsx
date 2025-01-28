@@ -10,13 +10,13 @@ const styles = StyleSheet.create({
         title: {
             color: "white",
             textAlign: "center",
-            marginTop: "6%",
+            marginTop: "5%",
             fontSize: 20,
             fontWeight: "bold"
         },
         imageContainer: {
             alignSelf: "center",
-            marginTop: 100,
+            marginTop: 80,
         },
         image:{
             width: 125,
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
             paddingVertical: 20,
             paddingHorizontal: 15,
             marginHorizontal: "auto",
-            marginTop: 50,
+            marginTop: 30,
             borderRadius: 10,
         },
         titleForm:{
