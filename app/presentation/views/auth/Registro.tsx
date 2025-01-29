@@ -4,10 +4,16 @@ import styles from "./StylesLogin";
 import {RoundedBottom} from "../../components/RoundedBottom";
 import {FormInput} from "../../components/FormInput";
 import viewModel from "./ViewModel";
+import {useEffect} from "react";
 
 function RegistroScreen() {
-    const {username, password, repeatPassword, name, phone, email, onChangeRegister, register} = viewModel.RegisterViewModel();
+    const {username, password, repeatPassword, name, phone, email, onChangeRegister, register, errorMessage} = viewModel.RegisterViewModel();
 
+    useEffect(() =>{
+        if (errorMessage != ""){
+            ToastAndroid.show(errorMessage, ToastAndroid.LONG)
+        }
+    }, [errorMessage]) //en qué se tiene que basar
     return (
         <View style={styles.container}>
 
@@ -63,8 +69,7 @@ function RegistroScreen() {
 
                 <View>
                     <RoundedBottom text={"Registrar"}
-                                   onPressFromInterface={() =>{register()
-                                   ToastAndroid.show("Registrado", ToastAndroid.LONG)}}></RoundedBottom>
+                                   onPressFromInterface={() =>{register()}}></RoundedBottom>
                 </View>
 
             </View>
