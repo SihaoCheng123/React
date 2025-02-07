@@ -1,38 +1,56 @@
 import React from "react";
 import {RegisterAuthUseCase} from "../../../domain/useCases/auth/RegisterAuth";
 import {LoginAuthUseCase} from "../../../domain/useCases/auth/LoginAuth";
+import {saveUserUseCase} from "../../../domain/useCases/userLocal/SaveUser";
+import {UserLogin} from "../../../domain/entities/User";
+import {useUserLocalStorage} from "../../hooks/useUserLocalStorage";
 
 const LoginViewModel = () =>{
     const [errorMessage, setErrorMessage] = React.useState<string>("");
     const [values, setValues] = React.useState({
      email: "",
      password: "",
- });
+     });
 
- const onChangeLogin = (property:string, value:any)=>{
-     //... para que le de toda la info
-     setValues({...values, [property]: value});
+    //se ejecuta cuando se inicia sesión, al principio no hay nada
+    // pero después se guardan los datos tras iniciar otra sesión
+
+    const {user, getUserSession} = useUserLocalStorage();
+
+     const onChangeLogin = (property:string, value:any)=>{
+         //... para que le de toda la info
+         setValues({...values, [property]: value});
+     }
+     const login = async () => {
+         if (validateForm()){
+             const response = await LoginAuthUseCase(values);
+             if(!response.success){
+                 setErrorMessage(response.message)
+             }else{
+                 await saveUserUseCase(response.data as UserLogin)
+                 //para almacenar el error y decirle que ha cambiado el estado
+                 await getUserSession()
+             }
+             console.log("RESULT: " + JSON.stringify(response));
+         }
+     }
+     const validateForm = () =>{
+         if (values.email === ""){
+             setErrorMessage("El correo es obligatorio");
+             return false;
+         }
+         if (values.password === ""){
+             setErrorMessage("La contraseña es obligatoria");
+             return false;
+         }
+         return true;
  }
- const login = async () => {
-     const response = await LoginAuthUseCase(values);
-     console.log("RESULT: " + JSON.stringify(response));
- }
-    const validateForm = () =>{
-        if (values.email === ""){
-            setErrorMessage("El correo es obligatorio");
-            return false;
-        }
-        if (values.password === ""){
-            setErrorMessage("La contraseña es obligatoria");
-            return false;
-        }
-        return true;
-    }
  return {
      ...values,
      onChangeLogin,
      login,
-     errorMessage
+     errorMessage,
+     user
  }
 
 }

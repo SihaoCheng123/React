@@ -1,29 +1,35 @@
 import React, {useEffect} from 'react';
 import {Image, Text, ToastAndroid, TouchableOpacity, View} from "react-native";
 import styles from "./StylesLogin"
-import {useNavigation} from "@react-navigation/native";
 import {RoundedBottom} from "../../components/RoundedBottom";
 import {FormInput} from "../../components/FormInput";
 import viewModel from "./ViewModel";
-import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {RootStackParamList} from "../../../../App";
+import {PropsStackNavigation} from "../../interfaces/StackNav";
 
 
-export const LoginScreen = () => {
-    const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
+
+export function LoginScreen({navigation, route}: PropsStackNavigation) {
+    //const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
     //modificar el valor de una variable y saber su estado
     //Se puede especificar el tipo de dato que almacena
     // const [email, setEmail] = useState<string>("");
     // const [password, setPassword] = useState<string>("");
 
 
-    const {email, password, onChangeLogin, login, errorMessage} = viewModel.LoginViewModel();
+    const {email, password, onChangeLogin, login, errorMessage, user} = viewModel.LoginViewModel();
     useEffect(() =>{
         if (errorMessage != ""){
             ToastAndroid.show(errorMessage, ToastAndroid.LONG)
         }
-    })
+    },[errorMessage])
 
+    useEffect(()=>{
+        //En el momento que se abre la ventana, esto se ejecuta y comprueba si hay usuario
+        //También, si se efectúa un cambio en su estado, se ejecuta y vuelve a comprobar
+        if (user && user?.token) {
+            navigation.replace("AdminTabNavigator") //Reemplazar la ventana actual por la que ponemos aquí
+        }
+    },[user])
     return (
 
         <View style={styles.container}>
