@@ -1,9 +1,14 @@
-import {PropsStackNavigation} from "../../interfaces/StackNav";
 import {Dimensions, View} from "react-native";
 import viewModel from "./ViewModel";
 import {RolesItem} from "./Item";
 import {GestureHandlerRootView} from "react-native-gesture-handler";
 import Carousel from "react-native-reanimated-carousel";
+import {NativeStackScreenProps} from "@react-navigation/native-stack";
+import {RootStackParamList} from "../../../../App";
+
+interface PropsStackNavigation extends NativeStackScreenProps<RootStackParamList, "RolesScreen"> {
+
+}
 
 export function RolesScreen({navigation, route}:PropsStackNavigation){
     const {user, deleteSession} = viewModel.RolesViewModel();
@@ -16,15 +21,14 @@ export function RolesScreen({navigation, route}:PropsStackNavigation){
         <GestureHandlerRootView style={{flex: 1, alignItems: "center", justifyContent: "center", paddingTop: 50}}>
             <View>
                 <Carousel
-                    loop={false}
+                    loop={true}
                     width={width}
-                    height={width / 2}
+                    height={height / 2}
                     autoPlay={false}
                     data={user?.roles!}
                     scrollAnimationDuration={1000}
-                    onSnapToItem={(index) => console.log('current index:', index)}
                     renderItem={({ item }) => (
-                        <RolesItem rol={item} width={width - 100} height={420}></RolesItem>
+                        <RolesItem rol={item} width={width - 100} height={420} navigation={navigation}></RolesItem>
                     )}
                 />
             </View>

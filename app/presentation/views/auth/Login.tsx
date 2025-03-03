@@ -27,7 +27,12 @@ export function LoginScreen({navigation, route}: PropsStackNavigation) {
         //En el momento que se abre la ventana, esto se ejecuta y comprueba si hay usuario
         //También, si se efectúa un cambio en su estado, se ejecuta y vuelve a comprobar
         if (user && user?.token) {
-            navigation.replace("AdminTabNavigator") //Reemplazar la ventana actual por la que ponemos aquí
+            if (user.roles.length>1){
+                navigation.replace("RolesScreen") //Reemplazar la ventana actual por la que ponemos aquí
+            }else{
+                navigation.replace("ClientTabNavigator")
+            }
+
         }
     },[user])
     return (
@@ -37,7 +42,7 @@ export function LoginScreen({navigation, route}: PropsStackNavigation) {
             <View style={styles.imageContainer}>
                 <Image source={require('../../../../assets/logo.png')} style={styles.image}></Image>
 
-                <Text style={styles.title}>Foood App</Text>
+                <Text style={styles.title}>Food App</Text>
             </View>
 
             <View style={styles.formContainer}>

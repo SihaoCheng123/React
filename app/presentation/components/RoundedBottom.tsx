@@ -22,15 +22,17 @@ export const RoundedBottom = ({text, onPressFromInterface}: Props) => {
 const styles = StyleSheet.create({
     formButton:{
         backgroundColor:AppColors.primary,
-        color: "#ffffff",
-        paddingVertical: 5,
+        paddingVertical: 3,
         paddingHorizontal: 10,
         borderRadius: 5,
         textAlign:"center",
+        alignSelf: "center",
+        marginHorizontal:30,
+        width: "80%",
     },
     formButtonText:{
         color: AppColors.background,
         textAlign: "center",
-        fontSize: 17,
+        fontSize: 15,
     },
 })

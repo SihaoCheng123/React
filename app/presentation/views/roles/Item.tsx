@@ -2,18 +2,27 @@ import React from "react";
 import {Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {RolInterface} from "../../../domain/entities/Rol";
 import {AppColors} from "../../theme/AppTheme";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {RootStackParamList} from "../../../../App";
 
 interface Props{
     rol: RolInterface;
     width: number;
     height: number;
+    navigation: NativeStackNavigationProp<RootStackParamList, "RolesScreen", undefined>
 }
 
 
-export const RolesItem = ({rol, width, height}:Props) =>{
+export const RolesItem = ({rol, width, height, navigation}:Props) =>{
     //uri equivale a una url
     return (
-        <TouchableOpacity style={{...styles.container, width: width, height: height}} onPress={()=>{}}>
+        <TouchableOpacity style={{...styles.container, width: width, height: height}}
+                          onPress={()=>{
+                              if (rol.name == "Admin") {
+                                  navigation.navigate("AdminTabNavigator")
+                              }else if (rol.name == "Cliente") {
+                                  navigation.navigate("ClientTabNavigator")
+                              }}}>
             <View style={styles.imagecontainer}>
                 <Image style={styles.image} source={{uri: rol.image}}></Image>
                 <View style={styles.textContainer}>
