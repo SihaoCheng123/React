@@ -1,7 +1,6 @@
 import {Button, Image, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import viewModel from "./ViewModel";
 import {PropsStackNavigation} from "../../../interfaces/StackNav";
-import {AppColors} from "../../../theme/AppTheme";
 import {RoundedBottom} from "../../../components/RoundedBottom";
 import {InfoProfileItem} from "../../../components/InfoProfileItem";
 
@@ -19,7 +18,7 @@ export const ProfileInfoScreen = ({navigation, route}:PropsStackNavigation) => {
                 <InfoProfileItem title={user?.firstName} imageUrl={require("../../../../../assets/user.png")} text={"Usuario"}/>
                 <InfoProfileItem title={user?.email} imageUrl={require("../../../../../assets/email.png")} text={"Correo eléctronico"}/>
                 <InfoProfileItem title={user?.phone} imageUrl={require("../../../../../assets/phone.png")} text={"Teléfono"}/>
-               <RoundedBottom text={"Actualizar información"} onPressFromInterface={()=>{}}></RoundedBottom>
+               <RoundedBottom text={"Actualizar información"} onPressFromInterface={()=>{navigation.navigate("ProfileUpdateScreen")}}></RoundedBottom>
 
             </View>
         </View>

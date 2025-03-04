@@ -10,6 +10,7 @@ import {useFonts} from "expo-font";
 import {AppColors} from "./app/presentation/theme/AppTheme";
 import {ActivityIndicator} from "react-native";
 import {ClientTabNavigator} from "./app/presentation/navigation/ClientTabNavigator";
+import {ProfileUpdateScreen} from "./app/presentation/views/profile/update/ProfileUpdate";
 
 export type RootStackParamList = {
     LoginScreen: undefined;
@@ -18,6 +19,7 @@ export type RootStackParamList = {
     RolesScreen: undefined;
     AdminTabNavigator: undefined;
     ClientTabNavigator: undefined;
+    ProfileUpdateScreen: undefined;
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -42,6 +44,7 @@ export default function App() {
                     <Stack.Screen name={"RolesScreen"} component={RolesScreen} options={{title:"Navegación de administración"}}></Stack.Screen>
                     <Stack.Screen name={"AdminTabNavigator"} component={AdminTabNavigator} options={{title:"Navegación de administración"}}></Stack.Screen>
                     <Stack.Screen name={"ClientTabNavigator"} component={ClientTabNavigator} options={{title:"Navegación de cliente"}}></Stack.Screen>
+                    <Stack.Screen name={"ProfileUpdateScreen"} component={ProfileUpdateScreen} options={{title:"Actualizar perfil de cliente"}}></Stack.Screen>
                     {/*<Stack.Screen name={"ProfileInfoScreen"} component={ProfileInfoScreen} options={{headerShown: true, title:"Perfil"}}></Stack.Screen>*/}
                     {/*<Stack.Screen name={"RolesScreen"} component={RolesScreen} options={{headerShown: true, title:"Perfil"}}></Stack.Screen>*/}
                 </Stack.Navigator>

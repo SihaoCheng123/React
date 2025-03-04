@@ -13,6 +13,7 @@ export const ClientTabNavigator = () => {
             <Tab.Screen name="ClientCategoryListScreen"
                         options={{title: "Lista de categorías",
                             tabBarLabel:"Inicio",
+                            headerShown: true,
                             tabBarIcon:({color}) =>(
                                 <Image source={require("../../../assets/list.png")}
                                        style={{width:25, height:25}}/>

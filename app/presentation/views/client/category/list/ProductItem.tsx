@@ -14,9 +14,12 @@ export const ProductItem = ({product}: ProductProps) => {
                     <Text style={styleProductItem.productName}>{product.name}</Text>
                     <Text style={styleProductItem.productDescription}>{product.description}</Text>
                 </View>
+            </View>
+            <View style={styleProductItem.imageAndPriceContainer}>
+                <Image style={styleProductItem.imageContainer} source={{uri: product.image}}/>
                 <Text style={styleProductItem.productPrice}>{product.price} €</Text>
             </View>
-            <Image style={styleProductItem.imagecontainer} source={{uri: product.image}}/>
+
         </View>
     )
 }
@@ -27,9 +30,9 @@ const styleProductItem = StyleSheet.create({
         flexDirection: "row",
         width: "100%",
         justifyContent: "space-between",
-        borderBottomWidth: 1,
-        borderColor: "#000",
         paddingHorizontal: 20,
+        marginTop: 10,
+        borderBottomWidth: 1
     },
     textContainer:{
         display: "flex",
@@ -40,7 +43,7 @@ const styleProductItem = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        marginBottom: 20
+        marginVertical: 10
     },
     productName:{
         fontSize: 16,
@@ -55,10 +58,16 @@ const styleProductItem = StyleSheet.create({
         fontFamily: AppFonts.medium,
         fontWeight: "bold"
     },
-    imagecontainer:{
+    imageAndPriceContainer:{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+    },
+    imageContainer:{
         width: 75,
         height: 75,
         borderRadius: 50,
         alignSelf: "center",
+        marginBottom: 5
     }
 })

@@ -5,11 +5,12 @@ import {RolInterface} from "./Rol";
 export interface UserInterface{
     id?: number,
     firstName: string,
-    lastName: string,
+    lastName?: string,
     email: string,
     phone: string,
-    password: string,
+    password?: string,
     repeatPassword?: string,
+    image?: string,
     //token?: string,
 }
 

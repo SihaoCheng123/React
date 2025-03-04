@@ -1,5 +1,5 @@
 import {AuthRepository} from "../../domain/repositories/AuthRepository";
-import {UserInterface, UserLoginInterface} from "../../domain/entities/User";
+import {UserInterface, UserLogin, UserLoginInterface} from "../../domain/entities/User";
 import {ApiDeliveryResponse} from "../sources/remote/models/ResponseApiDelivery";
 import {ApiDelivery} from "../sources/remote/api/ApiDelivery";
 import {AxiosError} from "axios";
@@ -26,4 +26,5 @@ export class AuthRepositoryImpl implements AuthRepository{
             return Promise.resolve(JSON.parse(JSON.stringify(e.response?.data)) as ApiDeliveryResponse);
         }
     }
+
 }
